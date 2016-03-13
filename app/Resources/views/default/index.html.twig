@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="form">
+<h3>Отправьте нам Ваши персональные данные</h3>
+    {{ form_errors(form) }}
+    {{form_start(form)}}
+	{{form_widget(form)}}
+	{{form_end(form)}}
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+	body{
+	margin: 0 0 0 0;
+	}
+	h3 {
+	text-align: center;
+	}
+    .form {
+	position: absolute;
+	top: 40%;
+	left: 40%;
+	border: 1px solid black;
+	width: 350px;
+	padding: 5px;
+	background-color: lightgrey;
+	}
+	#submit {
+	margin-top: 5px;
+	}
+	input {
+	margin: 5px;
+	}
+    
+</style>
+{% endblock %}
