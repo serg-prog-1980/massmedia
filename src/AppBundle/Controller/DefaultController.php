@@ -41,16 +41,8 @@ class DefaultController extends Controller
 		   
 		if ($form->isSubmitted() && $form->isValid()) {
          
-		 // $em = $this->getDoctrine()->getManager();
-         //$em->persist($fields);
-         //$em->flush();
-		  //$response = new RedirectResponse('/task/success');
-         //$response->prepare($request);
-		 $request_body = file_get_contents('php://input');
-
-         //return $response->send();
-           // return $this->render('default/message.html.twig');
-         return new Response("Мы ждем вас в".$request_body);
+            return $this->render('default/message.html.twig');
+      
     }		
 	 
 				
