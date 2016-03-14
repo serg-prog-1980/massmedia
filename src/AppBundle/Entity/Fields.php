@@ -69,7 +69,7 @@ class Fields
 		 $metadata->addPropertyConstraint('actDate', new Assert\Regex(array(
 		 'pattern' => '/^[0-3][1-9][-\.\/][0-1][1-9][-\.\/][1-2][0,9][0-9][0-9]/',
 		 'htmlPattern' => '^[0-3][1-9][-\.\/][0-1][1-9][-\.\/][1-2][0,9][0-9][0-9]',
-		 'message' => 'Вы должны написать дату в формате DD/MM/YYYY или DD/MM/YYYY или DD-MM-YYYY',
+		 'message' => 'Вы должны написать дату в формате DD/MM/YYYY или DD.MM.YYYY или DD-MM-YYYY',
 		 )));
 		$metadata->addPropertyConstraint('file', new Assert\File(array(
             'maxSize' => 6000000,
