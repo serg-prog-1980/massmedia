@@ -12,6 +12,8 @@ class Fields
     protected $name;
 	protected $age;
     protected $actDate;
+	
+	
 
     public function getName()
     {
@@ -36,11 +38,15 @@ class Fields
     {
         return $this->actDate;
     }
-
-    public function setactDate(\DateTime $actDate = null)
+	 public function setactDate($actDate)
     {
         $this->actDate = $actDate;
     }
+
+    /*public function setactDate(\DateTime $actDate = null)
+    {
+        $this->actDate = $actDate;
+    }*/
 	
 	
 	public static function loadValidatorMetadata(ClassMetadata $metadata)
@@ -59,6 +65,12 @@ class Fields
             'minMessage' => 'Ваш возвраст должен быть не менее {{ limit }} лет',
             'maxMessage' => 'Ваш возвраст должен быть не более {{ limit }} лет',
         )));
+		$metadata->addPropertyConstraint('actDate', new Assert\NotBlank());
+		 $metadata->addPropertyConstraint('actDate', new Assert\Regex(array(
+		 'pattern' => '/^[0-3][1-9][-\.\/][0-1][1-9][-\.\/][1-2][0,9][0-9][0-9]/',
+		 'htmlPattern' => '^[0-3][1-9][-\.\/][0-1][1-9][-\.\/][1-2][0,9][0-9][0-9]',
+		 'message' => 'Вы должны написать дату в формате DD/MM/YYYY или DD/MM/YYYY или DD-MM-YYYY',
+		 )));
 		$metadata->addPropertyConstraint('file', new Assert\File(array(
             'maxSize' => 6000000,
         )));

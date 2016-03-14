@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+//use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\Length;
@@ -27,16 +27,16 @@ class DefaultController extends Controller
     {
 		$fields = new Fields();
         //$fields->setName('Введите фамилию и имя');
-        $fields->setactDate(new \DateTime('today'));
-		 
-
+        //$fields->setactDate(new \DateTime('today'));
+	 
 		 $form = $this->createFormBuilder($fields)
             ->add('name', TextType::class, array('label' => 'Имя'))
 			->add('age',IntegerType::class, array('label' => 'Возраст'))
-            ->add('actDate', DateType::class, array(
+			->add('actDate', TextType::class, array('label' => 'Дата'))
+			/*->add('actDate', DateType::class, array(
 			'label' => 'Дата',
 			'widget' => 'single_text',
-			'format' => 'yyyy-MM-dd',))
+			'format' => 'yyyy-MM-dd',))*/
 			->add('filename',FileType::class, array('label' => 'Резюме'))
             ->add('send', SubmitType::class, array('label' => 'Отправить'))
             ->getForm();
@@ -45,7 +45,7 @@ class DefaultController extends Controller
 		if ($form->isSubmitted() && $form->isValid()) {
          
 		   
-             $data = date_format($fields->getactDate(),'Y-m-d');
+             $data = $fields->getactDate(); //date_format($fields->getactDate(),'Y-m-d');
         
             //return new Response("Мы ждем Вас в ".$data);
 			return $this->render('default/message.html.twig',array(
