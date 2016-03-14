@@ -33,7 +33,10 @@ class DefaultController extends Controller
 		 $form = $this->createFormBuilder($fields)
             ->add('name', TextType::class, array('label' => 'Имя'))
 			->add('age',IntegerType::class, array('label' => 'Возраст'))
-            ->add('actDate', DateType::class, array('label' => 'Дата'))
+            ->add('actDate', DateType::class, array(
+			'label' => 'Дата',
+			'widget' => 'single_text',
+			'format' => 'yyyy-MM-dd',))
 			->add('filename',FileType::class, array('label' => 'Резюме'))
             ->add('send', SubmitType::class, array('label' => 'Отправить'))
             ->getForm();
@@ -41,7 +44,13 @@ class DefaultController extends Controller
 		   
 		if ($form->isSubmitted() && $form->isValid()) {
          
-            return $this->render('default/message.html.twig');
+		   
+             $data = date_format($fields->getactDate(),'Y-m-d');
+        
+            //return new Response("Мы ждем Вас в ".$data);
+			return $this->render('default/message.html.twig',array(
+			'data'=>$data,
+			));
       
     }		
 	 

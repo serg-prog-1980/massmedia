@@ -1,6 +1,28 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 <div id="message">
-Мы ждем Вас в  
+<h2>Мы ждем Вас в  {{ data}}</h2>
 </div>
+{% endblock %}
+{% block stylesheets %}
+<style>
+   body {
+ background-color: lightgray;
+} 
+    #message {
+ 
+	position: absolute;
+	top: 40%;
+	left: 40%;
+	heigth: 100px;
+	width: 350px;
+	border: 1px solid green;
+	background-color: white;
+	 
+	}
+	h2 {
+	text-align: center;
+	}
+	
+</style>
 {% endblock %}
