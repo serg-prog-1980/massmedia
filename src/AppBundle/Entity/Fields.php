@@ -71,8 +71,17 @@ class Fields
 		 'htmlPattern' => '^[0-3][1-9][-\.\/][0-1][1-9][-\.\/][1-2][0,9][0-9][0-9]',
 		 'message' => 'Вы должны написать дату в формате DD/MM/YYYY или DD.MM.YYYY или DD-MM-YYYY',
 		 )));
-		$metadata->addPropertyConstraint('file', new Assert\File(array(
-            'maxSize' => 6000000,
+		$metadata->addPropertyConstraint('filename', new Assert\File(array(
+            'maxSize' => '1024k',
+			'maxSizeMessage'=>'Размер загружаемого файла превышает {{ limit }} КБайт',
+			'mimeTypes' => array(
+                'application/pdf',
+                'application/x-pdf',
+				'application/msword',
+				'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+				 
+            ),
+			'mimeTypesMessage' => 'Пожалуйста загрузите файлы c расширениями PDF или DOC',
         )));
          
     }
