@@ -3,10 +3,13 @@
 {% block body %}
 <div class="form">
 <h3>Отправьте нам Ваши персональные данные</h3>
-    {{ form_errors(form) }}
-    {{form_start(form)}}
-	{{form_widget(form)}}
-	{{form_end(form)}}
+    {{ form_start(form) }}
+	{{ form_errors(form) }}
+	{{ form_row(form.name,{'attr':{'pattern':'^[А-ЯЁA-Z][а-яёa-z]+ [А-ЯЁA-Z][а-яёa-z]+$','title':'Фамилия/пробел/Имя'}}) }}
+	{{ form_row(form.age,{'attr':{'min':17,'max':65}}) }}
+	{{ form_row(form.actDate) }}
+	{{ form_row(form.filename) }}
+	{{ form_end(form) }}
 </div>
 {% endblock %}
 
@@ -32,8 +35,26 @@
 	}
 	input {
 	margin: 5px;
+
 	}
-	 
+	input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    input[type="file"]	{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+    }
+	 input:focus{
+  background-color: #eef;
+     }
+	input[type="text"]{
+	width: 250px;
+	}
+     
     
 </style>
 {% endblock %}
