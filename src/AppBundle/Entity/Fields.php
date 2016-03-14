@@ -56,7 +56,7 @@ class Fields
 		 $metadata->addPropertyConstraint('name', new Assert\Regex(array(
 		 'pattern' => '/^[A-ZА-ЯЁ][a-zа-яё]+\s[A-ZА-ЯЁ][a-zа-яё]+\b/u',
 		 'htmlPattern' => '^[A-ZА-ЯЁ][a-zа-яё]+\s[A-ZА-ЯЁ][a-zа-яё]+\b',
-		 'message' => 'Вы должны написать фамилию и имя с заглавной буквы',
+		 'message' => 'Пожалуйста напишите фамилию и имя с заглавной буквы через пробел по английски или на русском',
 		 )));
 		 
          $metadata->addPropertyConstraint('age', new Assert\Range(array(
