@@ -8,7 +8,7 @@
 	{{ form_row(form.name,{'attr':{'pattern':'^[А-ЯЁA-Z][а-яёa-z]+ [А-ЯЁA-Z][а-яёa-z]+$','title':'Пожалуйста напишите фамилию и имя с заглавной буквы через пробел по английски или на русском'}}) }}
 	{{ form_row(form.age,{'attr':{'min':17,'max':65}}) }}
 	{{ form_row(form.actDate,{'attr':{'pattern': '^[0-3][1-9][-\.\/][0-1][1-9][-\.\/][1-2][0,9][0-9][0-9]','title':'Дата должна быть в формате DD/MM/YYYY или DD.MM.YYYY или DD-MM-YYYY'}}) }}
-	{{ form_row(form.filename) }}
+	{{ form_row(form.file) }}
 	{{ form_end(form) }}
 </div>
 {% endblock %}

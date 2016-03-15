@@ -12,6 +12,7 @@ class Fields
     protected $name;
 	protected $age;
     protected $actDate;
+	private $file;
 	
 	
 
@@ -43,10 +44,25 @@ class Fields
         $this->actDate = $actDate;
     }
 
-    /*public function setactDate(\DateTime $actDate = null)
+       /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
     {
-        $this->actDate = $actDate;
-    }*/
+        $this->file = $file;
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
 	
 	
 	public static function loadValidatorMetadata(ClassMetadata $metadata)
@@ -71,7 +87,7 @@ class Fields
 		 'htmlPattern' => '^[0-3][1-9][-\.\/][0-1][1-9][-\.\/][1-2][0,9][0-9][0-9]',
 		 'message' => 'Вы должны написать дату в формате DD/MM/YYYY или DD.MM.YYYY или DD-MM-YYYY',
 		 )));
-		$metadata->addPropertyConstraint('filename', new Assert\File(array(
+		$metadata->addPropertyConstraint('file', new Assert\File(array(
             'maxSize' => '1024k',
 			'maxSizeMessage'=>'Размер загружаемого файла превышает {{ limit }} КБайт',
 			'mimeTypes' => array(
@@ -85,43 +101,13 @@ class Fields
         )));
          
     }
-	/**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    public $id;
+	 
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     */
-    public $filename;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    public $path;
-
-    public function getAbsolutePath()
-    {
-        return null === $this->path
-            ? null
-            : $this->getUploadRootDir().'/'.$this->path;
-    }
-
-    public function getWebPath()
-    {
-        return null === $this->path
-            ? null
-            : $this->getUploadDir().'/'.$this->path;
-    }
-
-    protected function getUploadRootDir()
+    public function getUploadRootDir()
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
 
     protected function getUploadDir()
@@ -130,28 +116,8 @@ class Fields
         // when displaying uploaded doc/image in the view.
         return 'uploads/documents';
     }
-	 /**
-     * @Assert\File(maxSize="6000000")
-     */
-    private $file;
+	 
 
-    /**
-     * Sets file.
-     *
-     * @param UploadedFile $file
-     */
-    public function setFile(UploadedFile $file = null)
-    {
-        $this->file = $file;
-    }
-
-    /**
-     * Get file.
-     *
-     * @return UploadedFile
-     */
-    public function getFile()
-    {
-        return $this->file;
-    }
+  
+	 
 }

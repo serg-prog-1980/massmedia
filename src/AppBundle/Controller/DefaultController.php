@@ -26,28 +26,25 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
 		$fields = new Fields();
-        //$fields->setName('Введите фамилию и имя');
-        //$fields->setactDate(new \DateTime('today'));
 	 
 		 $form = $this->createFormBuilder($fields)
             ->add('name', TextType::class, array('label' => 'Имя'))
 			->add('age',IntegerType::class, array('label' => 'Возраст'))
 			->add('actDate', TextType::class, array('label' => 'Дата'))
-			/*->add('actDate', DateType::class, array(
-			'label' => 'Дата',
-			'widget' => 'single_text',
-			'format' => 'yyyy-MM-dd',))*/
-			->add('filename',FileType::class, array('label' => 'Резюме'))
+			->add('file',FileType::class, array('label' => 'Резюме'))
             ->add('send', SubmitType::class, array('label' => 'Отправить'))
             ->getForm();
 		  $form->handleRequest($request);
 		   
 		if ($form->isSubmitted() && $form->isValid()) {
-         
+             
 		   
-             $data = $fields->getactDate(); //date_format($fields->getactDate(),'Y-m-d');
-        
-            //return new Response("Мы ждем Вас в ".$data);
+             $data = $fields->getactDate(); 
+              
+			 $file = $fields->getFile();
+			 $fileName = $file->getClientOriginalName();
+			 $fileDir = $fields->getUploadRootDir();
+			 $file->move($fileDir,$fileName);
 			return $this->render('default/message.html.twig',array(
 			'data'=>$data,
 			));
